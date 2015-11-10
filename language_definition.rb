@@ -5,6 +5,8 @@ class LanguageDefinition
   attr_accessor :multiline_begin_symbol
   attr_accessor :multiline_end_symbol
 
+  # a comment here
+
   def initialize(language_hash)
     @language_name = language_hash['name']
     @comment_symbol = language_hash['comment']

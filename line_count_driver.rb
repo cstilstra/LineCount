@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative 'file_reader'
 
 class LineCountDriver
@@ -7,12 +9,23 @@ class LineCountDriver
   attr_reader :comment_count
 
   def initialize()
-    # TODO: Read in command line arguments
     # Initialize the required objects
     @reader = FileReader.new
     # Variables to hold the running counts
     @code_count = 0
     @comment_count = 0
+    # Read in command line argument to get file name
+    file_name = ARGV[0]
+    if File.file?(file_name)
+      result = run_one_file(file_name)
+      @return_value = [result[0].to_s + " comment lines",result[1].to_s() + " code lines"]
+    elsif File.directory?(file_name)
+      result = run_directory_recursively(file_name)
+      @return_value = [result[0].to_s + " comment lines",result[1].to_s() + " code lines"]
+    else
+      @return_value = "Not a file or directory"
+    end # End if File.file?(file_name)
+    puts @return_value
   end # End initialize()
 
   def run_one_file(file_name)
@@ -28,7 +41,6 @@ class LineCountDriver
   end # End run_one_file()
 
   def run_directory_recursively(directory_name)
-    #return "directory run recursively: " + directory_name
     # Check if is a file or a directory
     if File.file?(directory_name)
       # If file, run file
@@ -55,3 +67,7 @@ class LineCountDriver
   end # End add_response_to_counts()
 
 end # End class
+
+if __FILE__ == $0
+  driver = LineCountDriver.new()
+end

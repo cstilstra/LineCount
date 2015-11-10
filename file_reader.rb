@@ -1,4 +1,5 @@
 require 'json'
+require_relative 'language_definition'
 
 class FileReader
 
@@ -67,6 +68,7 @@ class FileReader
     language_index = determine_language(extension)
     # Get a reference to the relevant language definition object
     language_definition_object = @language_definition_objects[language_index]
+    #puts "file_reader.rb: language definition object language name = " + language_definition_object.language_name
     return language_definition_object
   end # End get_language_for_file()
 
@@ -88,6 +90,8 @@ class FileReader
     # Load the file and loop through each line in the file
     File.open(file_name, "r") do |open_file|
       open_file.each_line do |line|
+        # Trim leading whitespace
+        line = line.lstrip
         # Check if in a multiline comment
         if in_multiline
           if /\S/ !~ line # REGEX for empty lines
