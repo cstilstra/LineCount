@@ -30,9 +30,9 @@ describe LineCountDriver do
   end
 
   # Tests for run_directory_recursively()
-  it "run_directory_recursively(directory_name) returns 'directory run recursively: ' + directory_name" do
-    response = driver.run_directory_recursively("project_folder")
-    expect(response).to eq("directory run recursively: project_folder")
+  it "run_directory_recursively(directory_name) returns the correct counts of comment and code lines" do
+    response = driver.run_directory_recursively("./languages")
+    expect(response).to eq([0, 38])
   end
 
   # Tests for add_response_to_counts()

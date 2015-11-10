@@ -1,0 +1,10 @@
+{
+  "name" : "javascript",
+  "extensions" : [
+    "js",
+    "json"
+  ],
+  "comment" : "//",
+  "multilineBegin" : "/*",
+  "multilineEnd" : "*/"
+}

@@ -14,7 +14,7 @@ describe FileReader do
     response = reader.load_language_extensions()
     #expect(response).to eq({".java"=>"java", ".class"=>"java", ".rb"=>"ruby", ".cpp"=>"c++"})
     arr = reader.extension_language_pairs
-    expect(arr.length).to eq(4)
+    expect(arr.length).to eq(6)
   end
 
   it "determine_language(extension) returns the correct language" do
@@ -25,6 +25,8 @@ describe FileReader do
     response = reader.determine_language(".java")
     expect(response).to eq(0)
     response = reader.determine_language(".cpp")
+    expect(response).to eq(3)
+    response = reader.determine_language(".json")
     expect(response).to eq(2)
     response = reader.determine_language(".trick")
     expect(response).to eq("unknown")
