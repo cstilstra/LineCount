@@ -1,0 +1,10 @@
+{
+  "name" : "java",
+  "extensions" : [
+    "java",
+    "class"
+  ],
+  "comment" : "//",
+  "multilineBegin" : "/*",
+  "multilineEnd" : "*/"
+}

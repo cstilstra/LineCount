@@ -1,0 +1,9 @@
+{
+  "name" : "ruby",
+  "extensions" : [
+    "rb"
+  ],
+  "comment" : "#",
+  "multilineBegin" : "begin=",
+  "multilineEnd" : "end="
+}
