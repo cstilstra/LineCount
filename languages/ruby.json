@@ -4,6 +4,6 @@
     "rb"
   ],
   "comment" : "#",
-  "multilineBegin" : "begin=",
-  "multilineEnd" : "end="
+  "multilineBegin" : "=begin",
+  "multilineEnd" : "=end"
 }

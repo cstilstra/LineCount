@@ -5,8 +5,8 @@ require_relative 'file_reader'
 class LineCountDriver
 
   attr_accessor :reader
-  attr_reader :code_count
-  attr_reader :comment_count
+  attr_accessor :code_count
+  attr_accessor :comment_count
 
   def initialize()
     # Initialize the required objects
@@ -14,8 +14,12 @@ class LineCountDriver
     # Variables to hold the running counts
     @code_count = 0
     @comment_count = 0
+    puts handle_command_line_arguments(ARGV)
+  end # End initialize()
+
+  def handle_command_line_arguments(arguments)
     # Read in command line argument to get file name
-    file_name = ARGV[0]
+    file_name = arguments[0]
     if File.file?(file_name)
       result = run_one_file(file_name)
       @return_value = [result[0].to_s + " comment lines",result[1].to_s() + " code lines"]
@@ -25,8 +29,8 @@ class LineCountDriver
     else
       @return_value = "Not a file or directory"
     end # End if File.file?(file_name)
-    puts @return_value
-  end # End initialize()
+    return @return_value
+  end # End handle_command_line_arguments()
 
   def run_one_file(file_name)
     # Check if is a file
@@ -48,13 +52,13 @@ class LineCountDriver
     elsif File.directory?(directory_name)
       # Get a list of all files and subdirectories in the directory
       file_names = Dir.entries(directory_name)
-      # TODO: Loop through list of files and subdirectories, add_response_to_counts(recursive call) for each
+      # Loop through list of files and subdirectories, add_response_to_counts(recursive call) for each
       file_names.each do |file|
         if file != ".." && file != "."
           add_response_to_counts(run_directory_recursively(directory_name + "/" + file))
         end # End if file != ".." && file != "."
       end # End file_names.each do
-      # TODO: Return counts
+      # Return counts
       return [@comment_count, @code_count]
     else
       return [0,0]

@@ -1,4 +1,5 @@
 require 'rspec'
+require_relative 'spec_helper'
 require_relative '../file_reader'
 
 describe FileReader do
@@ -55,8 +56,8 @@ describe FileReader do
     test_file.puts("# Four comments")
     test_file.puts("# One line of code")
     test_file.puts("one_line_of_code = 1")
-    test_file.puts("begin=")
-    test_file.puts("end=")
+    test_file.puts("=begin")
+    test_file.puts("=end")
     test_file.close
     result = reader.scan_file_with_language("test.rb", reader.language_definition_objects[1])
     expect(result).to eq([4,1])
@@ -102,8 +103,8 @@ describe FileReader do
     test_file.puts("# Four comments")
     test_file.puts("# One line of code")
     test_file.puts("one_line_of_code = 1")
-    test_file.puts("begin=")
-    test_file.puts("end=")
+    test_file.puts("=begin")
+    test_file.puts("=end")
     test_file.close
     result = reader.read_file("test.rb")
     expect(result).to eq([4,1])
